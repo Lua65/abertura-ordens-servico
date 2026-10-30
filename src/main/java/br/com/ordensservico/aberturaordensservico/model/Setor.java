@@ -14,9 +14,19 @@ public class Setor {
 
     private String nome;
 
+<<<<<<< HEAD
     public String getNome(){
         return nome;
     }
+=======
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+>>>>>>> 4807cc56cf0dfc8f570211f62f64d6c0a477e1f6
     
     public void setNome(String nome){
         this.nome = nome; 

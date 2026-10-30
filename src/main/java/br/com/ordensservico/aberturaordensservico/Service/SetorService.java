@@ -31,9 +31,16 @@ public class SetorService {
     public Optional<Setor> atualizar(Integer id, Setor novosDados){
         Optional<Setor> setorEncontrado = setorRepository.findById(id);
 
-        Setor
+        Setor setor = setorEncontrado.get();
+
+        setor.setNome(novosDados.getNome());
         
         return Optional.of(setorRepository.save(setor));
+    }
+
+    public boolean excluir(Integer id){
+        setorRepository.deleteById(id);
+        return true;
     }
 
 

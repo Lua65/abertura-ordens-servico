@@ -8,11 +8,14 @@ import org.springframework.stereotype.Service;
 import br.com.ordensservico.aberturaordensservico.Repository.EquipamentoRepository;
 import br.com.ordensservico.aberturaordensservico.Repository.SetorRepository;
 import br.com.ordensservico.aberturaordensservico.model.Equipamento;
+import jakarta.validation.constraints.NotNull;
 
 
 @Service 
 public class EquipamentoService {
     private final EquipamentoRepository equipamentoRepository;
+
+    @NotNull (message = "O setor é obrigatório")
     private final SetorRepository setorRepository;
 
     public EquipamentoService(EquipamentoRepository equipamentoRepository, SetorRepository setorRepository){

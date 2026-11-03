@@ -2,21 +2,29 @@ package br.com.ordensservico.aberturaordensservico.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 @Entity 
 @Table (name = "equipamento")
 public class Equipamento {
     @Id 
-    @GeneratedValue 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @NotBlank(message = "O nome do equipamento é obrigatório")
     private String nome;
 
+    @NotBlank(message = "O número do patrimônio é obrigatório")
     private String numeroPatrimonio;
 
+    @NotNull(message = "O setor é obrigatório")
+    @JoinColumn (name = "setor_id", nullable = false)
     @ManyToOne 
     private Setor setor;
 
@@ -54,6 +62,10 @@ public class Equipamento {
 
     public void setSetor(Setor setor){
         this.setor = setor;
+    }
+
+    public Integer getId() {
+        return id;
     }
 
         

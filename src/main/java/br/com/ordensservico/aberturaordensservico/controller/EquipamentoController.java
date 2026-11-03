@@ -1,5 +1,9 @@
 package br.com.ordensservico.aberturaordensservico.controller;
 
+
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -12,8 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.ordensservico.aberturaordensservico.Service.EquipamentoService;
-import br.com.ordensservico.aberturaordensservico.Service.SetorService;
-import br.com.ordensservico.aberturaordensservico.model.Setor;
+import br.com.ordensservico.aberturaordensservico.model.Equipamento;
+
 
 @RestController 
 @RequestMapping ("/equipamentos")
@@ -23,5 +27,58 @@ public class EquipamentoController {
     public EquipamentoController(EquipamentoService equipamentoService){
         this.equipamentoService = equipamentoService;
     }
+
+    @PostMapping 
+    public ResponseEntity<Equipamento> cadastrar(@RequestBody Equipamento equipamento){
+        Equipamento equipamentoCadastrado = equipamentoService.cadastrar(equipamento);
+        return ResponseEntity
+        .status(HttpStatus.CREATED)
+        .body(equipamentoCadastrado);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<Equipamento>> listar(){
+        List<Equipamento> equipamentos = equipamentoService.listar();
+        return ResponseEntity.ok(equipamentos);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Equipamento> buscarPorId(@PathVariable Integer id){
+    
+        Optional<Equipamento> equipamento = equipamentoService.buscarPorId(id);
+
+        if (equipamento.isPresent()){
+            return ResponseEntity.ok(equipamento.get());
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+        
+    }
+
+    @PutMapping ("/{id}")
+    public ResponseEntity<Equipamento> atualizar(
+        @PathVariable Integer id,
+        @RequestBody Equipamento novosDados){
+        Optional<Equipamento> equipamentoAtualizado = equipamentoService.atualizar(id, novosDados);
+
+        if (equipamentoAtualizado.isPresent()) {
+            return ResponseEntity.ok(equipamentoAtualizado.get());
+        }  
+         return ResponseEntity.notFound().build();
+       
+    }
+
+    @DeleteMapping ("/{id}")
+    public ResponseEntity<Void> excluir(
+        @PathVariable Integer id) {
+            boolean excluido = equipamentoService.excluir(id);
+            if (excluido){
+                return ResponseEntity.noContent().build();
+            } else {
+                return ResponseEntity.notFound().build();
+            }
+            
+        }
+
     
 }

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import br.com.ordensservico.aberturaordensservico.Repository.EquipamentoRepository;
 import br.com.ordensservico.aberturaordensservico.Repository.SetorRepository;
 import br.com.ordensservico.aberturaordensservico.model.Equipamento;
-import br.com.ordensservico.aberturaordensservico.model.Setor;
+
 
 @Service 
 public class EquipamentoService {

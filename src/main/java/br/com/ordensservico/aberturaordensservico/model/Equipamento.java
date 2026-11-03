@@ -15,17 +15,17 @@ public class Equipamento {
 
     private String nome;
 
-    private Integer numeroPatrimonio;
+    private String numeroPatrimonio;
 
     @ManyToOne 
-    private String setor;
+    private Setor setor;
 
     public Equipamento(){
         
 
     }
 
-    public Equipamento (String nome, Integer numeroPatrimonio, String setor){
+    public Equipamento (String nome, String numeroPatrimonio, Setor setor){
         this.nome = nome;
         this.numeroPatrimonio = numeroPatrimonio;
         this.setor = setor;
@@ -40,19 +40,19 @@ public class Equipamento {
         this.nome = nome;
     }
 
-    public Integer getNumeroPatrimonio(){
+    public String getNumeroPatrimonio(){
         return numeroPatrimonio;
     }
 
-    public void setNumeroPatrimonio(Integer numeroPatrimonio){
+    public void setNumeroPatrimonio(String numeroPatrimonio){
         this.numeroPatrimonio = numeroPatrimonio;
     }
 
-    public String getSetor(){
+    public Setor getSetor(){
         return setor;
     }
 
-    public void setSetor(String setor){
+    public void setSetor(Setor setor){
         this.setor = setor;
     }
 

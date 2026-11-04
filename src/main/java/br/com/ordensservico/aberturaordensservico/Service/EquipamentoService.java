@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.ordensservico.aberturaordensservico.Repository.EquipamentoRepository;
 import br.com.ordensservico.aberturaordensservico.Repository.SetorRepository;
+import br.com.ordensservico.aberturaordensservico.dto.EquipamentoRequest;
 import br.com.ordensservico.aberturaordensservico.model.Equipamento;
 import br.com.ordensservico.aberturaordensservico.model.Setor;
 
@@ -22,8 +23,8 @@ public class EquipamentoService {
         this.setorRepository = setorRepository;
     }
 
-    public Optional<Equipamento> cadastrar(Equipamento dadosEquipamento){
-        Optional<Setor> setorEncontrado = setorRepository.findById(dadosEquipamento.getSetor().getId());
+    public Optional<Equipamento> cadastrar(EquipamentoRequest dadosEquipamento){
+        Optional<Setor> setorEncontrado = setorRepository.findById(dadosEquipamento.getSetorId());
 
         if (setorEncontrado.isEmpty()) {
             return Optional.empty();
@@ -45,14 +46,14 @@ public class EquipamentoService {
         return equipamentoRepository.findById(id);
     }
 
-    public Optional<Equipamento> atualizar(Integer id, Equipamento novosDados){
+    public Optional<Equipamento> atualizar(Integer id, EquipamentoRequest novosDados){
         Optional<Equipamento> equipamentoEncontrado = equipamentoRepository.findById(id);
 
         if (!equipamentoEncontrado.isPresent()) {
             return Optional.empty();
         }
 
-        Optional<Setor> setorEncontrado = setorRepository.findById(novosDados.getSetor().getId());
+        Optional<Setor> setorEncontrado = setorRepository.findById(novosDados.getSetorId());
 
         if (setorEncontrado.isEmpty()) {
             return Optional.empty();

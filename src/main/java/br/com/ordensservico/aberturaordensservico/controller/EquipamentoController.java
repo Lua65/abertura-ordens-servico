@@ -30,8 +30,13 @@ public class EquipamentoController {
     }
 
     @PostMapping 
-    public ResponseEntity<Equipamento> cadastrar(@Valid @RequestBody Equipamento equipamento){
-        Equipamento equipamentoCadastrado = equipamentoService.cadastrar(equipamento);
+    public ResponseEntity<Optional<Equipamento>> cadastrar(@Valid @RequestBody Equipamento equipamento){
+        Optional<Equipamento> equipamentoCadastrado = equipamentoService.cadastrar(equipamento);
+
+        if (equipamentoCadastrado.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+
         return ResponseEntity
         .status(HttpStatus.CREATED)
         .body(equipamentoCadastrado);

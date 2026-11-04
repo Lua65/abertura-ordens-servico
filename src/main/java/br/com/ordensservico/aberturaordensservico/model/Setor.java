@@ -6,6 +6,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 @Entity 
 @Table (name = "setor")
@@ -15,6 +16,7 @@ public class Setor {
     private Integer id;
 
     @NotBlank(message = "O nome do setor é obrigatório")
+    @NotNull (message = "O nome do setor não pode ser nulo")
     private String nome;
 
     public Integer getId() {

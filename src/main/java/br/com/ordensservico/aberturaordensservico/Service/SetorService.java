@@ -31,6 +31,10 @@ public class SetorService {
     public Optional<Setor> atualizar(Integer id, Setor novosDados){
         Optional<Setor> setorEncontrado = setorRepository.findById(id);
 
+        if (!setorEncontrado.isPresent()) {
+            return Optional.empty();
+        }
+
         Setor setor = setorEncontrado.get();
 
         setor.setNome(novosDados.getNome());
@@ -39,6 +43,9 @@ public class SetorService {
     }
 
     public boolean excluir(Integer id){
+        if (!setorRepository.existsById(id)) {
+            return false;
+        }
         setorRepository.deleteById(id);
         return true;
     }

@@ -61,7 +61,9 @@ public class EquipamentoService {
         Equipamento equipamento = equipamentoEncontrado.get();
 
         equipamento.setNome(novosDados.getNome());
-        
+        equipamento.setNumeroPatrimonio(novosDados.getNumeroPatrimonio());
+        equipamento.setSetor(setorEncontrado.get());
+
         return Optional.of(equipamentoRepository.save(equipamento));
     }
 

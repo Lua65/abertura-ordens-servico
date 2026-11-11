@@ -23,6 +23,10 @@ public class OrdemServico {
 
     private LocalDateTime dataAbertura;
 
+    private LocalDateTime dataEncerramento;
+
+    private String solucao;
+
     @ManyToOne 
     @JoinColumn (name = "equipamento_id")
     private Equipamento equipamento;
@@ -56,6 +60,22 @@ public class OrdemServico {
 
     public void setEquipamento(Equipamento equipamento) {
         this.equipamento = equipamento;
+    }
+
+    public LocalDateTime getDataEncerramento() {
+        return dataEncerramento;
+    }
+
+    public void setDataEncerramento(LocalDateTime dataEncerramento) {
+        this.dataEncerramento = dataEncerramento;
+    }
+
+    public String getSolucao() {
+        return solucao;
+    }
+
+    public void setSolucao(String solucao) {
+        this.solucao = solucao;
     }
 
 }
